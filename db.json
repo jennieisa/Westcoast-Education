@@ -1,0 +1,48 @@
+{
+    "teachers": [
+        {
+            "id": 1, 
+            "firstName": "Agneta",
+            "lastName": "Carlsson",
+            "ssn": 196303041230,
+            "email": "agneta.carlsson@wceducation.com",
+            "mobileNumber": 701112223,
+            "competence": [
+                "JavaScript", 
+                "Math",
+                "Art"
+            ]
+            
+        },
+        {
+            "id": 2,
+            "firstName": "Ove",
+            "lastName": "Sundberg",
+            "ssn": 196010044323,
+            "email": "ove.sundberg@wceducation.com",
+            "mobileNumber": 731234231,
+            "competence": [
+                "JavaScript", 
+                "Swedish",
+                "Math"
+            ]
+        }
+        
+    ],
+    "courses": [
+        {
+            "id": 1,
+            "name": "JavaScript", 
+            "courseNumber": "JS23412",
+            "length": 50,
+            "startDate": "2023-04-23T18:25:43.511Z"
+        },
+        {
+            "id": 2,
+            "name": "Art", 
+            "courseNumber": "AT23412",
+            "length": 50,
+            "startDate": "2023-02-23T18:25:43.511Z"
+        }
+    ]
+}
