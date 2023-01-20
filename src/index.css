@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,39 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+header {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+}
+
+main {  
+  height: 100vh;
+}
+
+.overlay {
+  background: url("./Assets/charlesdeluvio-Lks7vei-eAg-unsplash.jpg") no-repeat;
+  background-size: cover;
+}
+
+ul {
+  padding: 0px;
+}
+
+li {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

@@ -1,10 +1,10 @@
 
-const Card = () => {
+const Card = (props) => {
 
     return (
-        <div>
-            <h2>Card</h2>
-        </div>
+        <li>
+            <h2>{props}</h2>
+        </li>
     )
 };
 

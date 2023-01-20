@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
 
+import classes from './NavBar.module.css';
+
 const NavBar = () => {
 
     return(
-        <header>
-            <h1>
-                <Link to="/">WESTCOAST EDUCATION</Link>
-            </h1>
-            <nav>
-                <ul>
-                    <li>
+            <nav className={classes["nav"]}>
+                <ul className={classes["list"]}>  
+                    <li className={classes["link"]}>
                         <Link to="/courses">Våra kurser</Link>
                     </li>
-                    <li>
+                    <li className={classes["link"]}>
                         <Link to="/admin">Admin</Link>
+                    </li>
+                    <li className={classes["link"]}>
+                        <Link>Logga in</Link>
                     </li>
                 </ul>
             </nav>
-        </header>
     )
 };
 
