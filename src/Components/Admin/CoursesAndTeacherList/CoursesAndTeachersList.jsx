@@ -39,7 +39,7 @@ const CoursesAndTeachersList = () => {
     }, [context.topicToShow]);
 
     return(
-        <section className={classes.container}>
+        <section className="container">
             {showModal && (
                 <Modal/>
             )}

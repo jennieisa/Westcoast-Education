@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import TopicContext from "../../../store/Topic-context";
+import classes from "./Details.module.css";
 
 const Details = () => {
     
@@ -9,6 +10,8 @@ const Details = () => {
     const {id} = useParams();
 
     const [data, setData] = useState(null);
+
+    const navigate = useNavigate();
 
     const getData = (url, id) => {
         fetch(`${url}/${id}`)
@@ -25,27 +28,34 @@ const Details = () => {
     }, [context.topicToShow, id]);
 
     return(
-        <article>
+        <article className="container">
+            <button className={classes.goBackBtn} onClick={() => navigate(-1)}>Gå tillbaka</button>
             {data && 
                 data.courseNumber &&
                 <>
-                    <h3>{data.name}</h3>
-                    <p>{data.courseNumber}</p>
-                    <p>{data.length} veckor</p>
-                    <p>{data.startDate}</p>
-                    <p>{data.description}</p>
+                    <h2>{data.name}</h2>
+                    <p className={classes.heading}>Kursnummer:</p>
+                    <p className={classes.text}>{data.courseNumber}</p>
+                    <p className={classes.heading}>Kurslängd:</p>
+                    <p className={classes.text}>{data.length} veckor</p>
+                    <p className={classes.heading}>Startdatum:</p>
+                    <p className={classes.text}>{data.startDate}</p>
+                    <p className={classes.heading}>Kursbeskrivning:</p>
+                    <p className={classes.text}>{data.description}</p>
                 </>
             }
             {data &&
                 data.firstName &&
                 <>
-                    <h3>{data.firstName} {data.lastName}</h3>
-                    <p>{data.ssn}</p>
-                    <p>{data.email}</p>
-                    <p>{data.mobileNumber}</p>
-                    {data.competences.map((v, index) => (
-                        <p key={index}>{v}</p>
-                    ))}
+                    <h2>{data.firstName} {data.lastName}</h2>
+                    <p className={classes.heading}>Personnummer:</p>
+                    <p className={classes.text}>{data.ssn}</p>
+                    <p className={classes.heading}>E-post:</p>
+                    <p className={classes.text}>{data.email}</p>
+                    <p className={classes.heading}>Mobilnummer:</p>
+                    <p className={classes.text}>{data.mobileNumber}</p>
+                    <p className={classes.heading}>Kompetenser:</p>
+                    <p className={classes.text}>{data.competences.join(", ")}</p>
                 </>
             }
         </article>

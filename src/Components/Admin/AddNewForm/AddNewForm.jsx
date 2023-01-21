@@ -5,7 +5,7 @@ import classes from './AddNewForm.module.css';
 import TopicContext from "../../../store/Topic-context";
 import { useState } from "react";
 
-const AddNewForm = (props) => {
+const AddNewForm = () => {
     
     const context = useContext(TopicContext);
 
@@ -43,6 +43,7 @@ const AddNewForm = (props) => {
             emailInputRef.current.value = "";
             mobileInputRef.current.value = "";
             competencesInputRef.current.value = "";
+            setCompetences([]);
         }
     };
 
@@ -113,8 +114,6 @@ const AddNewForm = (props) => {
         
     };
 
-    console.log(props.showModal);
-
     return(
         <form onSubmit={onSubmitHandler} className={classes.modal}>
             {context.topicToShow === "courses" ?
@@ -142,16 +141,16 @@ const AddNewForm = (props) => {
                     <input type="email" id="email" name="email" ref={emailInputRef} />
                     <label htmlFor="mobileNumber">Mobilnummer:</label>
                     <input type="tel" id="mobileNumber" name="mobileNumber" ref={mobileInputRef}/>
-                    <div>
+                    <div className={classes.inputWrapper}>
                         <label htmlFor="competences">Kompetenser (ange en åt gången och klicka spara emellan):</label>
                         <input type="text" id="competences" name="competences" ref={competencesInputRef}/>
-                        <button onClick={onSaveCompetenceHandler}>Spara kompetens</button>
-                        <p>{competences.join(", ")}</p>
+                        <button className={classes.saveCompetenceBtn} onClick={onSaveCompetenceHandler}>Spara kompetens</button>
+                        <p className="competenceOutput">{competences.join(", ")}</p>
                     </div>
                 </>
             } 
-            <button type="submit">Lägg till {context.topicToShow === "courses" ? "kurs" : "lärare"} </button>
-            <button onClick={onCancelClickedHandler}>Avbryt</button>
+            <button className={classes.button} type="submit">Lägg till {context.topicToShow === "courses" ? "kurs" : "lärare"} </button>
+            <button className={classes.button} onClick={onCancelClickedHandler}>Avbryt</button>
         </form>
     )
 };
