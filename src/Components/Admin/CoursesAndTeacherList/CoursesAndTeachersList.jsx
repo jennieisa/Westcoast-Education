@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./CoursesAndTeachersList.module.css";
 import TopicContext from "../../../store/Topic-context";
-import Card from "../Card/Card";
 
 const CoursesAndTeachersList = () => {
 
@@ -48,10 +48,25 @@ const CoursesAndTeachersList = () => {
             <button>Lägg till ny {context.topicToShow === "teachers" ? "lärare" : "kurs"}</button>
             <ul>
                 {data.map(item => (
-                    data.lenght !== 0 &&
-                    <li key={item.id}>
-                    
-                    </li>
+                
+                item.courseNumber ? 
+                <li key={item.id}>
+                    <Link to={'/courses/'+item.id}>
+                        <h3>{item.name}</h3>
+                        <p>{item.coursNumber}</p>
+                        <p>{item.length}</p>
+                        <p>{item.startDate}</p>
+                    </Link>
+                </li>
+                : 
+                <li key={item.id}>
+                    <Link to={'/teachers/'+item.id}>
+                        <h3>{item.firstName} {item.lastName}</h3>
+                        <p>{item.ssn}</p>
+                        <p>{item.email}</p>
+                        <p>{item.phoneNumber}</p>
+                    </Link>
+                </li>
                 ))}
             </ul>
         </div>

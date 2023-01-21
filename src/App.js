@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import CoursesAndTeachersList from './Components/Admin/CoursesAndTeacherList/CoursesAndTeachersList';
+import Details from './Components/Admin/Details/Details';
 import Home from './Components/Home/Home';
 import NavBar from './Components/NavBar/NavBar';
 import CourseList from './Components/Public/CourseList/CourseList';
@@ -30,6 +31,14 @@ function App() {
             <Route 
               path="/admin"
               element={ <CoursesAndTeachersList />}
+            />
+             <Route 
+              path="/courses/:id"
+              element={ <Details />}
+            />
+             <Route 
+              path="/teachers/:id"
+              element={ <Details />}
             />
           </Routes>
         </main>
