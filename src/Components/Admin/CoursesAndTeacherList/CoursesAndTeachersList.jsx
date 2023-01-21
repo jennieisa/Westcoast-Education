@@ -39,35 +39,37 @@ const CoursesAndTeachersList = () => {
     }, [context.topicToShow]);
 
     return(
-        <section>
+        <section className={classes.container}>
             {showModal && (
                 <Modal/>
             )}
 
             <h2>Välj mellan kurser och lärare</h2>
-            <button 
-                onClick={() => onClickHandler("courses")}
-                className={context.topicToShow === "courses" ? classes["active"] : classes["inactive"]}
-            >
-                Kurser
-            </button>
-            <button 
-                onClick={() => onClickHandler("teachers")}
-                className={context.topicToShow === "teachers" ? classes["active"] : classes["inactive"]}
-            >
-                Lärare
-            </button>
-            <button onClick={onShowModalHandler}>Lägg till ny {context.topicToShow === "teachers" ? "lärare" : "kurs"}</button>
-            <ul>
+            <div className={classes.buttonWrapper}>
+                <button 
+                    onClick={() => onClickHandler("courses")}
+                    className={context.topicToShow === "courses" ? classes["active"] : classes["inactive"]}
+                >
+                    Kurser
+                </button>
+                <button 
+                    onClick={() => onClickHandler("teachers")}
+                    className={context.topicToShow === "teachers" ? classes["active"] : classes["inactive"]}
+                >
+                    Lärare
+                </button>
+            </div>
+            <button onClick={onShowModalHandler} className={classes.addNewBtn}>Lägg till ny {context.topicToShow === "teachers" ? "lärare" : "kurs"}</button>
+            <ul className={classes.list}>
                 {data.map(item => (
                 
                 item.courseNumber ? 
-                <li key={item.id}>
+                <li key={item.id} className={classes.listItem}>
                     <Link to={'/courses/'+item.id}>
                         <h3>{item.name}</h3>
-                        <p>{item.courseNumber}</p>
-                        <p>{item.length}</p>
-                        <p>{item.startDate}</p>
+                        <p>Kursnummer: {item.courseNumber}</p>
+                        <p>{item.length} veckor</p>
+                        <p>Startdatum: {item.startDate}</p>
                     </Link>
                 </li>
                 : 

@@ -13,6 +13,10 @@ const CourseList = () => {
         .then(data => setCourses(data))
     }, []);
 
+    const signUpHandler = () => {
+        alert(`Du har nu anmält dig till kursen`);
+    }
+
     return (
         <section>
             <ul className={classes.list}>
@@ -22,7 +26,7 @@ const CourseList = () => {
                         <p>Kursnummer: {course.courseNumber}</p>
                         <p>{course.length} veckor</p>
                         <p>Startdatum: {course.startDate}</p>
-                        <button className={classes.button}>Anmäl dig</button>
+                        <button onClick={signUpHandler} className={classes.button}>Anmäl</button>
                     </li>
                 ))}
             </ul>
