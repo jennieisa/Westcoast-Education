@@ -27,17 +27,19 @@ h1 {
   font-weight: 800;
 }
 
-main {  
-  height: 100vh;
+main {
+  min-height: 800px;
+  height: 100%;
 }
 
-.overlay {
+.background {
   background: url("./Assets/charlesdeluvio-Lks7vei-eAg-unsplash.jpg") no-repeat;
   background-size: cover;
 }
 
 ul {
   padding: 0px;
+  margin: 0px;
 }
 
 li {
@@ -48,3 +50,19 @@ a {
   text-decoration: none;
   color: black;
 }
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+button {
+  padding: 10px 15px;
+  border: 0px;
+  border-radius: 20px;
+  background-color: rgb(157, 213, 241);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  cursor: pointer;
+  font-weight: 700;
+}
+

@@ -22,7 +22,7 @@ const Details = () => {
         } else if (context.topicToShow === "teachers") {
             getData("http://localhost:3010/teachers", id)
         }
-    }, [context.topicToShow]);
+    }, [context.topicToShow, id]);
 
     return(
         <article>
@@ -31,8 +31,9 @@ const Details = () => {
                 <>
                     <h3>{data.name}</h3>
                     <p>{data.courseNumber}</p>
-                    <p>{data.length} poäng</p>
+                    <p>{data.length} veckor</p>
                     <p>{data.startDate}</p>
+                    <p>{data.description}</p>
                 </>
             }
             {data &&
@@ -42,7 +43,7 @@ const Details = () => {
                     <p>{data.ssn}</p>
                     <p>{data.email}</p>
                     <p>{data.mobileNumber}</p>
-                    {data.competence.map((v, index) => (
+                    {data.competences.map((v, index) => (
                         <p key={index}>{v}</p>
                     ))}
                 </>

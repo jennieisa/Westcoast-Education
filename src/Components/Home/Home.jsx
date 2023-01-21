@@ -2,9 +2,9 @@
 const Home = () => {
 
     return (
-        <main>
+        <section>
 
-        </main>
+        </section>
     )
 };
 

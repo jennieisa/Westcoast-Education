@@ -3,24 +3,32 @@ import { Link } from "react-router-dom";
 
 import classes from "./CoursesAndTeachersList.module.css";
 import TopicContext from "../../../store/Topic-context";
+import Modal from "../../Modal/Modal";
 
 const CoursesAndTeachersList = () => {
 
     const [data, setData] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     const context = useContext(TopicContext)
 
     const onClickHandler = (value) => {
         context.onChange(value);
         console.log(context.topicToShow)
-    }
+    };
+
+    const onShowModalHandler = (e) => {
+        e.preventDefault();
+        setShowModal(true);
+        console.log(showModal)
+    };
 
     const getData = (url) => {
         console.log(url)
         fetch(url)
         .then(response => response.json())
         .then(data => setData(data))
-    }
+    };
 
     useEffect(() => {
         if(context.topicToShow === "courses") {
@@ -31,7 +39,11 @@ const CoursesAndTeachersList = () => {
     }, [context.topicToShow]);
 
     return(
-        <div>
+        <section>
+            {showModal && (
+                <Modal/>
+            )}
+
             <h2>Välj mellan kurser och lärare</h2>
             <button 
                 onClick={() => onClickHandler("courses")}
@@ -45,7 +57,7 @@ const CoursesAndTeachersList = () => {
             >
                 Lärare
             </button>
-            <button>Lägg till ny {context.topicToShow === "teachers" ? "lärare" : "kurs"}</button>
+            <button onClick={onShowModalHandler}>Lägg till ny {context.topicToShow === "teachers" ? "lärare" : "kurs"}</button>
             <ul>
                 {data.map(item => (
                 
@@ -53,7 +65,7 @@ const CoursesAndTeachersList = () => {
                 <li key={item.id}>
                     <Link to={'/courses/'+item.id}>
                         <h3>{item.name}</h3>
-                        <p>{item.coursNumber}</p>
+                        <p>{item.courseNumber}</p>
                         <p>{item.length}</p>
                         <p>{item.startDate}</p>
                     </Link>
@@ -64,12 +76,12 @@ const CoursesAndTeachersList = () => {
                         <h3>{item.firstName} {item.lastName}</h3>
                         <p>{item.ssn}</p>
                         <p>{item.email}</p>
-                        <p>{item.phoneNumber}</p>
+                        <p>{item.mobileNumber}</p>
                     </Link>
                 </li>
                 ))}
             </ul>
-        </div>
+        </section>
     )
 }
 

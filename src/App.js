@@ -18,7 +18,7 @@ function App() {
           </h1>
           <NavBar />
         </header>
-        <main className='overlay'>
+        <main className='background'>
           <Routes>
             <Route 
               path="/"

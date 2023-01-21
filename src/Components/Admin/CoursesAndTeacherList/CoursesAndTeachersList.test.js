@@ -19,7 +19,5 @@ describe("CoursesAndTeachersList Component", () => {
 
             expect(heading).toBeInTheDocument();
         })
-    })
-
-   
+    })   
 })
