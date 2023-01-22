@@ -1,15 +1,18 @@
 import { useRef } from "react";
 import { useContext } from "react";
+import { useState } from "react";
 
 import classes from './AddNewForm.module.css';
 import TopicContext from "../../../store/Topic-context";
-import { useState } from "react";
+import ShowModalContext from "../../../store/ShowModal-context";
 
 const AddNewForm = () => {
     
-    const context = useContext(TopicContext);
+    const topicContext = useContext(TopicContext);
+    const showModalContext = useContext(ShowModalContext)
 
     const [competences, setCompetences] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const courseNameInputRef = useRef();
     const courseNumberInputRef = useRef();
@@ -31,12 +34,13 @@ const AddNewForm = () => {
     };
 
     const clearForm = () => {
-        if(context.topicToShow === "courses") {
+        if(topicContext.topicToShow === "courses") {
             courseNameInputRef.current.value = "";
             courseNumberInputRef.current.value = "";
             courseLengthInputRef.current.value = "";
             courseStartInputRef.current.value = "";
-        } else if (context.topicToShow === "teachers") {
+            courseDescriptionInputRef.current.value = "";
+        } else if (topicContext.topicToShow === "teachers") {
             firstNameInputRef.current.value = "";
             lastNameInputRef.current.value = "";
             ssnInputRef.current.value = "";
@@ -51,7 +55,9 @@ const AddNewForm = () => {
 
         let url;
 
-        context.topicToShow === "courses" ? url = "http://localhost:3010/courses" : url = "http://localhost:3010/teachers";
+        console.log(object)
+
+        topicContext.topicToShow === "courses" ? url = "http://localhost:3010/courses" : url = "http://localhost:3010/teachers";
 
         fetch(url, {
                 method: "POST",
@@ -62,11 +68,28 @@ const AddNewForm = () => {
         });
     };
 
+    const validateForm = (form) => {
+
+        let isValid = false;
+        const values = Object.values(form);
+
+        for(let i = 0; i < values.length; i++) {
+            if(values[i] === "") {
+                isValid = false;
+                break;
+            } else {
+                isValid = true;
+            }
+        }
+
+        return isValid;
+    };
+
     const onSubmitHandler = (e) => {
-        if(context.topicToShow === "courses") {
+        if(topicContext.topicToShow === "courses") {
             const name = courseNameInputRef.current.value;
-            const courseNumber = courseNameInputRef.current.value;
-            const length = courseLengthInputRef.current.value;
+            const courseNumber = courseNumberInputRef.current.value;
+            const length = parseInt(courseLengthInputRef.current.value);
             const startDate = courseStartInputRef.current.value;
             const description = courseDescriptionInputRef.current.value;
 
@@ -76,13 +99,21 @@ const AddNewForm = () => {
                 name,
                 courseNumber,
                 length,
-                startDate,
-                description
+                description,
+                startDate
             };
 
-            postData(course);
+            const validate = validateForm(course);
 
-        } else if(context.topicToShow === "teachers") {
+            if(validate) {
+                postData(course);
+                clearForm();
+                setErrorMessage("");
+            } else {
+                setErrorMessage("Du behöver fylla i varje fält innan du kan lägga till kursen.")
+            }
+
+        } else if(topicContext.topicToShow === "teachers") {
             const firstName = firstNameInputRef.current.value;
             const lastName = lastNameInputRef.current.value;
             const ssn = ssnInputRef.current.value;
@@ -100,26 +131,30 @@ const AddNewForm = () => {
                 competences
             };
 
-            console.log(competencesInputRef.current)
+            const validate = validateForm(teacher);
 
-            postData(teacher);
+            if(validate) {
+                postData(teacher);
+                clearForm();
+                setErrorMessage("");
+            } else {
+                setErrorMessage("Du behöver fylla i varje fält innan du kan lägga till läraren.")
+            }
         }
-
-        clearForm();
     };
 
     const onCancelClickedHandler = (e) => {
         e.preventDefault();
         clearForm();
-        
     };
 
     return(
         <form onSubmit={onSubmitHandler} className={classes.modal}>
-            {context.topicToShow === "courses" ?
+            <button className={classes.closeBtn} onClick={() => showModalContext.onChange()}>X</button>
+            {topicContext.topicToShow === "courses" ?
                 <>
                     <label htmlFor="name">Kursnamn:</label> 
-                    <input id="name" type="text" name="name" ref={courseNameInputRef} />
+                    <input id="name" type="text" name="name" ref={courseNameInputRef}/>
                     <label htmlFor="courseNumber">Kursnummer:</label>
                     <input id="courseNumber" type="text" name="courseNumber" ref={courseNumberInputRef}/>
                     <label htmlFor="length">Längd på kursen (veckor):</label>
@@ -149,8 +184,9 @@ const AddNewForm = () => {
                     </div>
                 </>
             } 
-            <button className={classes.button} type="submit">Lägg till {context.topicToShow === "courses" ? "kurs" : "lärare"} </button>
+            <button className={classes.button} type="submit">Lägg till {topicContext.topicToShow === "courses" ? "kurs" : "lärare"} </button>
             <button className={classes.button} onClick={onCancelClickedHandler}>Avbryt</button>
+            <p>{errorMessage}</p>
         </form>
     )
 };

@@ -22,6 +22,12 @@ header {
   padding: 20px;
 }
 
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+}
+
 h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 800;
@@ -50,13 +56,13 @@ ul {
 li {
   display: block;
     background-color: white;
-    width: 40%;
+    
     margin: 10px;
     padding: 20px;
 }
 
 input, textarea {
-  height: 30px;
+  height: 20px;
   font-size: 15px;
 }
 
@@ -68,6 +74,7 @@ a {
 p {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 button {
@@ -86,4 +93,11 @@ button {
   background-color: rgba(255, 255, 255, 0.655);
   width: 100%;
   align-items: center;
+}
+
+#modal-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

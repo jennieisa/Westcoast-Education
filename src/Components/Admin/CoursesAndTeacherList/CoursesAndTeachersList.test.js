@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { setupServer } from 'msw/lib/node';
 import { rest } from 'msw';
+import userEvent from "@testing-library/user-event";
 
 import CoursesAndTeachersList from "./CoursesAndTeachersList";
 
@@ -16,7 +17,6 @@ describe("CoursesAndTeachersList Component", () => {
             setUp();
 
             const heading = screen.getByRole("heading", {name: "Välj mellan kurser och lärare"});
-
             expect(heading).toBeInTheDocument();
         })
     })   

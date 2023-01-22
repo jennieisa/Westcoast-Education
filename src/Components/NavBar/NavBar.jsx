@@ -13,9 +13,6 @@ const NavBar = () => {
                     <li className={classes["link"]}>
                         <Link to="/admin">Admin</Link>
                     </li>
-                    <li className={classes["link"]}>
-                        <Link>Logga in</Link>
-                    </li>
                 </ul>
             </nav>
     )

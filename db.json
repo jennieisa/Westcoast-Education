@@ -59,7 +59,7 @@
     {
       "name": "Java",
       "courseNumber": "JA23412",
-      "length": "20",
+      "length": 20,
       "startDate": "2023-01-03",
       "id": 3,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis nisi leo, vel commodo dui gravida non. In hac habitasse platea dictumst. Curabitur ultricies, ex eget feugiat pretium, felis tellus laoreet nulla, nec finibus sapien arcu et justo."
@@ -67,10 +67,34 @@
     {
       "name": ".Net",
       "courseNumber": "NT23412",
-      "length": "40",
+      "length": 40,
       "startDate": "2025-04-03",
       "id": 4,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis nisi leo, vel commodo dui gravida non. In hac habitasse platea dictumst. Curabitur ultricies, ex eget feugiat pretium, felis tellus laoreet nulla, nec finibus sapien arcu et justo."
+    },
+    {
+      "name": "Engelska",
+      "courseNumber": "Engelska",
+      "length": 50,
+      "startDate": "2025-03-04",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis nisi leo, vel commodo dui gravida non. In hac habitasse platea dictumst. Curabitur ultricies, ex eget feugiat pretium, felis tellus laoreet nulla, nec finibus sapien arcu et justo.",
+      "id": 5
+    },
+    {
+      "name": "Kemi",
+      "courseNumber": "Kemi",
+      "length": 30,
+      "startDate": "2024-06-30",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis nisi leo, vel commodo dui gravida non. In hac habitasse platea dictumst. Curabitur ultricies, ex eget feugiat pretium, felis tellus laoreet nulla, nec finibus sapien arcu et justo.",
+      "id": 6
+    },
+    {
+      "name": "Jennie",
+      "courseNumber": "Jennie",
+      "length": -1,
+      "description": "jjj",
+      "startDate": "2023-12-31",
+      "id": 7
     }
   ]
 }

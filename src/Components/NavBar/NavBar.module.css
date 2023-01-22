@@ -5,6 +5,13 @@
     justify-content: flex-end;
 }
 
+@media (max-width: 768px) {
+    .nav {
+      justify-content: flex-start;
+    }
+}
+  
+
 .list {
     display: flex;
     flex-direction: row;
