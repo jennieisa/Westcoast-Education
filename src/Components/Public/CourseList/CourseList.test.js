@@ -10,13 +10,6 @@ describe("CourseList Component", () => {
         render(<CourseList />);
     };
 
-    describe("CourseList component page layout", () => {
-
-        it("should have", () => {
-            setUp();
-        })
-    })
-
     describe("CourseList component api request", () => {
 
         it("should render a list of courses when the api request is successfull", async () => {

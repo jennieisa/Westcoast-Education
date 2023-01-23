@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {render, screen} from '@testing-library/react';
 
 import App from './App';
 
@@ -18,6 +18,9 @@ describe("App component", () => {
       setUp();
       const user = userEvent.setup();
 
+      await user.click(screen.getByText("Admin"));
+
+      expect(screen.getByText("Välj mellan kurser och lärare")).toBeInTheDocument();
     })
 
   })
